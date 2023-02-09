@@ -1,0 +1,47 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type ContactEntity {
+  address: String
+  filter: String
+  firstName: String!
+  id: ID!
+  lastName: String!
+  nickname: String
+  phoneNumbers: [String!]!
+  photo: String
+}
+
+input CreateContactInput {
+  address: String
+  filter: String = "original"
+  firstName: String!
+  lastName: String!
+  nickname: String
+  phoneNumbers: [String!]!
+  photo: String
+}
+
+type Mutation {
+  createContact(createContact: CreateContactInput!): ContactEntity!
+  removeContact(id: Float!): Float!
+  updateContact(updateContact: UpdateContactInput!): ContactEntity!
+}
+
+type Query {
+  getContacts: [ContactEntity!]!
+  getOneContact(id: Float!): ContactEntity!
+  searchContacts(searchQuery: String!): [ContactEntity!]!
+}
+
+input UpdateContactInput {
+  address: String
+  filter: String = "original"
+  firstName: String
+  id: ID!
+  lastName: String
+  nickname: String
+  phoneNumbers: [String!]
+  photo: String
+}
