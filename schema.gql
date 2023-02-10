@@ -27,12 +27,14 @@ type Mutation {
   createContact(createContact: CreateContactInput!): ContactEntity!
   removeContact(id: Float!): Float!
   updateContact(updateContact: UpdateContactInput!): ContactEntity!
+  uploadFile: String!
+  uploadImage(file: String!): String!
 }
 
 type Query {
-  getContacts: [ContactEntity!]!
+  getContacts(chunkSize: Int! = 5, offset: Int! = 0): [ContactEntity!]!
   getOneContact(id: Float!): ContactEntity!
-  searchContacts(searchQuery: String!): [ContactEntity!]!
+  searchContacts(chunkSize: Int! = 5, offset: Int! = 0, searchQuery: String!): [ContactEntity!]!
 }
 
 input UpdateContactInput {

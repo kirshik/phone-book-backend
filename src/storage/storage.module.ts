@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { Storage } from '@google-cloud/storage';
 import { StorageService } from './storage.service';
+import { StorageResolver } from './resolvers/storage/storage.resolver';
 
 @Module({
   providers: [
@@ -13,7 +14,8 @@ import { StorageService } from './storage.service';
         });
       }
     },
-    StorageService
+    StorageService,
+    StorageResolver
   ],
   exports: [Storage]
 })

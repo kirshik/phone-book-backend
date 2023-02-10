@@ -1,5 +1,6 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UploadedFile, UseInterceptors } from '@nestjs/common';
 import { Storage } from '@google-cloud/storage';
+import { FileInterceptor } from '@nestjs/platform-express';
 
 @Injectable()
 export class StorageService {
@@ -9,7 +10,10 @@ export class StorageService {
     this.storage = storageClient;
   }
 
-  async uploadImage(bucketName: string, fileName: string, image: Buffer): Promise<string> {
+
+  @UseInterceptors(FileInterceptor('file'))
+  async uploadImage(@UploadedFile() image: string, bucketName: string, fileName: string): Promise<string> {
+    console.log(image);
     const bucket = this.storage.bucket(bucketName);
     const file = bucket.file(fileName);
 
